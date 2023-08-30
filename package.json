@@ -1,0 +1,37 @@
+{
+  "name": "cai",
+  "version": "1.0.0",
+  "description": "A character.ai API for Node.js",
+  "main": "source/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/enginestein/cai.js"
+  },
+  "keywords": [
+    "ai",
+    "api",
+    "node",
+    "character",
+    "js",
+    "character-ai",
+    "character"
+  ],
+  "author": "Arya Praneil Pritesh",
+  "license": "GPL-3.0-only",
+  "bugs": {
+    "url": "https://github.com/enginestein/cai.js/issues"
+  },
+  "dependencies": {
+    "jimp": "^0.22.8",
+    "json-bigint": "^1.0.0",
+    "node-fetch": "^3.3.0",
+    "puppeteer": "^19.7.5",
+    "puppeteer-extra": "^3.3.6",
+    "puppeteer-extra-plugin-stealth": "^2.11.2",
+    "uuid": "^9.0.0"
+  },
+  "homepage": "https://github.com/enginestein/cai.js#readme"
+}
