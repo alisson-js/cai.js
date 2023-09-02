@@ -1,171 +1,209 @@
 # cai.js
 
-cai.js is A Character.ai API for JavaScript
+**cai.js** is a JavaScript library that provides access to the Character.ai API, allowing you to interact with chatbots and create conversational experiences in your JavaScript applications.
 
-# Installation
+![cai.js Logo](link_to_your_logo.png)
 
-Install the library using npm:
+## Installation
+
+You can install the library via npm:
 
 ```bash
 npm install cai
 ```
 
-# Usage
+## Quick Start
 
-To perform a guest login and start a conversation with a specific chatbot, follow below steps:
+To get started with cai.js and initiate a conversation with a chatbot, follow these steps:
 
 ```javascript
+const cai = require('cai');
 
-const c = require('cai');
-const cai = new c();
-
-(async() => {
+(async () => {
+    // Authenticate as a guest
     await cai.guestAuth();
 
-    const characterId = "8_1NyR8w1dOXmI1uWaieQcd147hecbdIK7CeEAIrdJw" // Id of a chatbot
+    // Replace with the character ID of your chatbot
+    const characterId = "8_1NyR8w1dOXmI1uWaieQcd147hecbdIK7CeEAIrdJw";
 
+    // Create a chat instance
     const chat = await cai.createChat(characterId);
-    const response = await chat.send('Hello', true)
+
+    // Send a message and await a response
+    const response = await chat.send('Hello', true);
 
     console.log(response);
 })();
 ```
 
-ID for characters can be found in the URL
+You can find the character ID in the URL when you visit your chatbot's page.
 
-# Place for an image
+## Image Interactions
 
-# Image Interactions
+### Generate an Image
 
-To generate an image:
-
-```javascript
-await chat.generateImage("An avenue")
-```
-
-To upload an image (from URL):
+To generate an image within the conversation, use:
 
 ```javascript
-await chat.uploadImage("https://www.imageurl.com/")
+await chat.generateImage("An avenue");
 ```
 
-To send a message and await response:
+### Upload an Image
+
+To upload an image from a URL to the conversation, use:
 
 ```javascript
-await chat.send("Hello", image_rel_path:"https://www.image.com/", true)
+await chat.uploadImage("https://www.imageurl.com/");
 ```
 
-# Other Interactions:
+### Send a Message with an Image
 
-To fetch chat history:
+You can send a message along with an image:
 
 ```javascript
-await chat.fetchHistory(pagenumber)
+await chat.send("Hello", { image_rel_path: "https://www.image.com/" }, true);
 ```
 
-Change conversation by ID:
+## Other Chat Interactions
+
+### Chat History
+
+Fetch the chat history:
 
 ```javascript
-await chat.changeConversationById(conversationExternalId, force = false)
+await chat.fetchHistory(pageNumber);
 ```
 
-Fetch all save conversations:
+### Change Conversation by ID
+
+Change the conversation by its external ID:
 
 ```javascript
-await chat.getSavedConversations(amount = 50)
+await chat.changeConversationById(conversationExternalId, force = false);
 ```
 
-Fetch message by ID:
+### Get Saved Conversations
+
+Fetch all saved conversations:
 
 ```javascript
-await chat.getMessageById(messageid)
+await chat.getSavedConversations(amount = 50);
 ```
 
-Delete message by ID:
+### Get Message by ID
+
+Retrieve a message by its ID:
 
 ```javascript
-await chat.deleteMessage(messageid)
+await chat.getMessageById(messageId);
 ```
 
-Delete multiple messages altogether:
+### Delete Message by ID
+
+Delete a message by its ID:
 
 ```javascript
-await chat.deleteMessages(messageids)
+await chat.deleteMessage(messageId);
 ```
 
-Perform a bulk message deletion:
+### Delete Multiple Messages
+
+Delete multiple messages:
 
 ```javascript
-await chat.deleteMessagesBulk(amount=50, descending=false)
+await chat.deleteMessages(messageIds);
 ```
+
+### Bulk Message Deletion
+
+Perform bulk message deletion:
+
+```javascript
+await chat.deleteMessagesBulk(amount = 50, descending = false);
+```
+
+### Start a New Chat
 
 Start a new chat:
 
 ```javascript
-await chat.newChat()
+await chat.newChat();
 ```
 
-# Functions with no need of `chat`
+## Functions Without `chat` Object
+
+These functions do not require a `chat` object and provide general information:
+
+### Fetch Chatbot Categories
 
 Fetch chatbot categories:
 
 ```javascript
-await fetchCategories()
+await fetchCategories();
 ```
+
+### Fetch User Configuration
 
 Fetch user configuration:
 
 ```javascript
-await fetchUserConfig()
+await fetchUserConfig();
 ```
 
-Fetch user:
+### Fetch User Information
+
+Fetch user information:
 
 ```javascript
-await fetchUser()
+await fetchUser();
 ```
+
+### Fetch Featured Chatbots
 
 Fetch featured chatbots:
 
 ```javascript
-await fetchFeaturedCharacters()
+await fetchFeaturedCharacters();
 ```
+
+### Fetch Chatbots by Categories
 
 Fetch chatbots by categories:
 
 ```javascript
-await fetchCharactersByCategory(curate=false)
+await fetchCharactersByCategory(curate = false);
 ```
 
-Fetch information of a chatbot:
+### Fetch Chatbot Information
+
+Fetch information about a specific chatbot:
 
 ```javascript
-await fetchCharacterInfo(characterid)
+await fetchCharacterInfo(characterId);
 ```
 
-Search for characters:
+### Search for Chatbots
+
+Search for chatbots by name:
 
 ```javascript
-
-await searchCharacters(charactername)
-
+await searchCharacters(characterName);
 ```
 
-# Authentication using token
+## Authentication
 
-- Go to character.ai
+To authenticate with Character.ai, follow these steps:
 
-- open inspect element
+1. Go to [Character.ai](https://www.character.ai/).
 
-- go to `storage`, then `local storage`
+2. Open your browser's developer tools and navigate to the "Storage" tab, then "Local Storage."
 
-- look for `@@auth0spajs@@::dyD3gE281MqgISG7FuIXYhL2WEknqZzv::https://auth0.character.ai/::openid profile email offline_access` key
+3. Look for the key `@@auth0spajs@@::dyD3gE281MqgISG7FuIXYhL2WEknqZzv::https://auth0.character.ai/::openid profile email offline_access` and open its body to copy the access token.
 
-- open body and copy the access token
+4. You can log in as a guest using `guestAuth()` or log in with your account using `tokenAuth()`.
 
-Login as guest using `guestAuth()`
+If you have a c.ai plus account, make sure to update `.usePlus` in the `requester.js` file and adjust `.forceWaitingRoom` accordingly.
 
-Login with your account using `tokenAuth()`
+Now you're ready to create engaging conversational experiences with cai.js!
 
-
-If you use c.ai plus then change `.usePlus` in the `requester.js` and change `.forceWaitingRoom`
+Feel free to add your logo and customize this README further to fit your project's needs.
