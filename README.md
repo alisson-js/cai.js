@@ -166,3 +166,6 @@ await searchCharacters(charactername)
 Login as guest using `guestAuth()`
 
 Login with your account using `tokenAuth()`
+
+
+If you use c.ai plus then change `.usePlus` in the `requester.js` and change `.forceWaitingRoom`
