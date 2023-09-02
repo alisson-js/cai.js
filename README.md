@@ -34,7 +34,7 @@ const cai = require('cai');
 })();
 ```
 
-You can find the character ID in the URL when you visit your chatbot's page.
+You can find the character ID in the URL when you visit your chatbot's page, the character Id is value of `char`
 
 ![Screenshot 2023-09-02 075802](https://github.com/enginestein/cai.js/assets/117010357/67dc87df-175a-489a-a28d-debcb4ee87d5)
 
