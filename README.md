@@ -17,12 +17,13 @@ To get started with cai.js and initiate a conversation with a chatbot, follow th
 ```javascript
 const c = require('cai.js');
 const cai = new c();
+
 (async () => {
     // Authenticate as a guest
     await cai.guestAuth();
 
     // Replace with the character ID of your chatbot
-    const characterId = "8_1NyR8w1dOXmI1uWaieQcd147hecbdIK7CeEAIrdJw";
+    const characterId = "M5xMXf4FKepKTYtWPqVaEZzuEuy90uu0eNZr4GZtDsA";
 
     // Create a chat instance
     const chat = await cai.createChat(characterId);
