@@ -7,7 +7,7 @@
 You can install the library via npm:
 
 ```bash
-npm install characterai
+npm install c.ai
 ```
 
 ## Quick Start
@@ -15,7 +15,7 @@ npm install characterai
 To get started with cai.js and initiate a conversation with a chatbot, follow these steps:
 
 ```javascript
-const cai = require('characterai');
+const cai = require('c.ai');
 
 (async () => {
     // Authenticate as a guest
