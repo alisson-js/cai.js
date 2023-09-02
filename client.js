@@ -259,6 +259,7 @@ class Client {
             'Content-Type': 'application/json',
         };
     }
+
 }
 
 module.exports = Client

@@ -63,7 +63,7 @@ class Requester {
                             
                             const waiting = (waitingRoomTimeLeft != null);
                             if (waiting) {
-                                console.log(`[cai] Puppeteer - Currently in cloudflare's waiting room. Time left: ${waitingRoomTimeLeft}`);
+                                console.log(`[cai] Waiting for cloudflare: ${waitingRoomTimeLeft}`);
                             } else {
                                 clearInterval(interval);
                                 resolve();
@@ -75,7 +75,7 @@ class Requester {
                     interval = setInterval(check, minute);
                     await check();
                 } catch (error) {
-                    console.log(`[cai] Puppeteer - There was a fatal error while checking for cloudflare's waiting room.`);
+                    console.log(`[cai] Error while searching for cloudflare waiting room`);
                     console.log(error);
                 }
             });
@@ -89,7 +89,7 @@ class Requester {
             this.uninitialize();
         });
 
-        console.log("[cai] Puppeteer - This is an experimental feature. Please report any issues on github.");
+        console.log("[cai] Completing initial tasks...");
 
         puppeteer.use(StealthPlugin());
         const browser = await puppeteer.launch({
@@ -132,7 +132,7 @@ class Requester {
 
         await this.waitForWaitingRoom(page);
 
-        console.log("[cai] Puppeteer - Done with setup");
+        console.log("[cai] Tasks completed");
     }
 
     async request(url, options) {
@@ -158,7 +158,7 @@ class Requester {
             if (url.endsWith("/streaming/")) {
                 await page.setRequestInterception(false);
                 if (!this.#hasDisplayed) {
-                    console.log("[cai] Puppeteer - Eval-fetching is an experimental feature and may be slower. Please report any issues on github")
+                    console.log("[cai] Fetching...")
                     this.#hasDisplayed = true;
                 }
 
@@ -208,7 +208,7 @@ class Requester {
                         initialRequest = false;
                         request.continue(data);
                     } catch (error) {
-                        console.log("[cai] Puppeteer - Non fatal error: " + error);
+                        console.log("[cai] " + error);
                     }
                 });
                 response = await page.goto(url, { waitUntil: 'networkidle2' });
@@ -217,7 +217,7 @@ class Requester {
             const authenticating = (url == "https://beta.character.ai/chat/auth/lazy/")
             
             if (!authenticating) 
-                console.log("[cai] Puppeteer - " + error);
+                console.log("[cai] " + error);
         }
 
         return response;
@@ -265,7 +265,7 @@ class Requester {
             response.status = () => response.code 
             response.body = () => response.response 
         } catch (error) {
-            console.log("[cai] Puppeteer - " + error)
+            console.log("[cai] " + error)
         }
 
         return response;
