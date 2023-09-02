@@ -15,8 +15,8 @@ npm install cai.js
 To get started with cai.js and initiate a conversation with a chatbot, follow these steps:
 
 ```javascript
-const cai = require('cai.js');
-
+const c = require('cai.js');
+const cai = new c();
 (async () => {
     // Authenticate as a guest
     await cai.guestAuth();
