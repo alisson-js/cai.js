@@ -2,8 +2,6 @@
 
 **cai.js** is a JavaScript library that provides access to the Character.ai API, allowing you to interact with chatbots and create conversational experiences in your JavaScript applications.
 
-![cai.js Logo](link_to_your_logo.png)
-
 ## Installation
 
 You can install the library via npm:
@@ -37,6 +35,8 @@ const cai = require('cai');
 ```
 
 You can find the character ID in the URL when you visit your chatbot's page.
+
+![Screenshot 2023-09-02 075802](https://github.com/enginestein/cai.js/assets/117010357/67dc87df-175a-489a-a28d-debcb4ee87d5)
 
 ## Image Interactions
 
