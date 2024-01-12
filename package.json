@@ -25,7 +25,6 @@
     "url": "https://github.com/enginestein/cai.js/issues"
   },
   "dependencies": {
-    "cai.js": "^1.0.0",
     "jimp": "^0.22.8",
     "json-bigint": "^1.0.0",
     "node-fetch": "^3.3.0",
